@@ -1,0 +1,21 @@
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void {
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('whatsapp');
+            $table->string('item');
+            $table->integer('harga');
+            $table->enum('status',['menunggu','diproses','selesai'])->default('menunggu');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void {
+        Schema::dropIfExists('orders');
+    }
+};
